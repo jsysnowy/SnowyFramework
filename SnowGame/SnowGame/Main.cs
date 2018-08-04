@@ -7,15 +7,38 @@ namespace SnowGame
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Main : Game
     {
+        // Monogame core:
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
-        public Game1()
+
+        // SnowGame core:
+        Core.Scenes.SceneManager sceneManager;
+        Core.Game.GameManager gameManager;
+
+        // TEMP
+        private SnowGame.Scenes.Menu Menu;
+        private SnowGame.Scenes.MainGame MainGame;
+
+        private int toggle = 0;
+
+        /// <summary>
+        /// Entry point to game:
+        /// </summary>
+        public Main()
         {
             graphics = new GraphicsDeviceManager(this);
+
+
+            // Set preferred height/width of the game:
+            graphics.PreferredBackBufferWidth = Core.Config.GameConfiguration.DEFAULT_WIDTH;
+            graphics.PreferredBackBufferHeight = Core.Config.GameConfiguration.DEFAULT_HEIGHT;
+
+            
             Content.RootDirectory = "Content";
+
+            
         }
 
         /// <summary>
@@ -28,6 +51,24 @@ namespace SnowGame
         {
             // TODO: Add your initialization logic here
 
+            // Make game manager:
+            gameManager = Core.Game.GameManager.Instance;
+            gameManager.Init(this.Content, this.GraphicsDevice);
+
+            // Make scene manager:
+            sceneManager = Core.Scenes.SceneManager.Instance;
+
+            Menu = new SnowGame.Scenes.Menu();
+            MainGame = new SnowGame.Scenes.MainGame();
+
+            sceneManager.AddScene(Menu);
+            sceneManager.AddScene(MainGame);
+
+            sceneManager.ActivateScene(MainGame);
+
+
+            // Calling base.Initialize will enumerate through any components
+            // and initialize them as well.
             base.Initialize();
         }
 
@@ -59,11 +100,26 @@ namespace SnowGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Check if user attempted to exit game:
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // TODO: Add your update logic here:
+            sceneManager.Update( gameTime );
 
+            // Remove this shit, it's jsut to test:
+            KeyboardState kb = Keyboard.GetState();
+            if ( kb.IsKeyDown(Keys.Space)) {
+                if ( toggle == 0) {
+                    toggle = 1;
+                    sceneManager.ActivateScene(MainGame);
+                } else {
+                    toggle = 0;
+                    sceneManager.ActivateScene(Menu);
+                }
+            }
+
+            // BASE - update main game with dT.
             base.Update(gameTime);
         }
 
@@ -76,6 +132,7 @@ namespace SnowGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            sceneManager.Draw();
 
             base.Draw(gameTime);
         }
