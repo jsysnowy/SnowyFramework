@@ -8,8 +8,9 @@ using SnowGame.Core.Objects.Core;
 
 namespace SnowGame.Core.Objects.Modules {
     class MoveRightModule : Core.Module {
+        public float Speed { get; set; } = 0.1f;
         public override void Update(GameTime gT, RenderableObject obj) {
-            obj.X += 0.1f;
+            obj.X += Speed;
             base.Update(gT, obj);
         }
     }

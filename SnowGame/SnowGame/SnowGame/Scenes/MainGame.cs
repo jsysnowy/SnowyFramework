@@ -19,7 +19,10 @@ namespace SnowGame.SnowGame.Scenes  {
 
             // TODO: Move to new function? Set all the textures this scene will load.
             LoadedTextures = new string[] {
-                "promptylogo"
+                "backgroundgrass",
+                "character",
+                "bow",
+                "arrow"
             };
 
             Random = new Random();
@@ -31,19 +34,30 @@ namespace SnowGame.SnowGame.Scenes  {
         public override void Initialise() {
             promptys = new List<Core.Objects.Core.RenderableObject>();
 
-            for ( int i = 0; i < 10; i++) {
-                Core.Objects.Core.RenderableObject prompty = new Core.Objects.Core.RenderableObject();
-                prompty.Texture = Textures["promptylogo"];
-                prompty.X = 0 ;
-                prompty.Y =  i;
-                Add(prompty);
-                promptys.Add(prompty);
+            Core.Objects.Core.RenderableObject background = new Core.Objects.Core.RenderableObject();
+            background.Texture = Textures["backgroundgrass"];
+            background.X = 0 ;
+            background.Y = 0;
+            Add(background);
 
+            Core.Objects.Core.RenderableObject character = new Core.Objects.Core.RenderableObject();
+            Add(character);
+            character.Texture = Textures["character"];
+            character.X = 100;
+            character.Y = 100;
+            character.AddModule<Core.Objects.Modules.MoveRightModule>();
 
-                prompty.AddModule<Core.Objects.Modules.MoveRightModule>();
-                prompty.AddModule<Core.Objects.Modules.MoveDownModules>();
-            }
+            Core.Objects.Core.RenderableObject bow = new Core.Objects.Core.RenderableObject();
+            character.Add(bow);
+            bow.Texture = Textures["bow"];
+            bow.X = 0;
+            bow.Y = 0;
 
+            Core.Objects.Core.RenderableObject arrow = new Core.Objects.Core.RenderableObject();
+            bow.Add(arrow);
+            arrow.Texture = Textures["arrow"];
+            arrow.X = 0;
+            arrow.Y = 0;
         }
 
 

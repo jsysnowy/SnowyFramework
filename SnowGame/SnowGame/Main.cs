@@ -67,7 +67,7 @@ namespace SnowGame
             sceneManager.AddScene(MainGame);
 
             // Lets start with the Menu cuz thats the easiest:
-            sceneManager.ActivateScene(Menu);
+            sceneManager.ActivateScene(MainGame);
 
 
             // Calling base.Initialize will enumerate through any components

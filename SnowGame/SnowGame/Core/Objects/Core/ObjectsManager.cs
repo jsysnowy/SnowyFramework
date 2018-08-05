@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SnowGame.Core.Scenes {
+namespace SnowGame.Core.Objects.Core {
     public class ObjectsManager {
         #region Objects List.
         private List<Objects.Core.RenderableObject> _objects;
@@ -36,6 +36,14 @@ namespace SnowGame.Core.Scenes {
         }
 
         /// <summary>
+        /// Return an array of all the current objects in this manager.
+        /// </summary>
+        /// <returns></returns>
+        public Objects.Core.RenderableObject[] GetAllObjects() {
+            return _objects.ToArray();
+        }
+
+        /// <summary>
         ///  Clear all objects from this ObjectManager.
         /// </summary>
         public void Clear() {
@@ -54,6 +62,7 @@ namespace SnowGame.Core.Scenes {
         /// </summary>
         /// <param name="gT"></param>
         public void Update( GameTime gT) {
+            // Loops through and calls update on all object in this manager.
             for (int i = 0; i < _objects.Count; i++) {
                 _objects[i].Update(gT);
             }
