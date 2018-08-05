@@ -45,19 +45,20 @@ namespace SnowGame.SnowGame.Scenes  {
             character.Texture = Textures["character"];
             character.X = 100;
             character.Y = 100;
+            character.AddModule<Core.Modules.PlayerController>();
             character.AddModule<Core.Modules.MoveRightModule>();
 
             Core.Objects.Base.RenderableObject bow = new Core.Objects.Base.RenderableObject();
             character.Add(bow);
             bow.Texture = Textures["bow"];
-            bow.X = 0;
-            bow.Y = 0;
+            bow.X = 90;
+            bow.Y = 60;
 
             Core.Objects.Base.RenderableObject arrow = new Core.Objects.Base.RenderableObject();
             bow.Add(arrow);
             arrow.Texture = Textures["arrow"];
-            arrow.X = 0;
-            arrow.Y = 0;
+            arrow.X = 5;
+            arrow.Y = 50;
         }
 
 
