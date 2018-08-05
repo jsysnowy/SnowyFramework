@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SnowGame.Core.Objects.Core {
+namespace SnowGame.Core.Modules.Base {
     public class Module {
         /// <summary>
         /// Creates new instance of Module.
@@ -33,7 +33,7 @@ namespace SnowGame.Core.Objects.Core {
         /// Updates this module.
         /// </summary>
         /// <param name="gT"></param>
-        public virtual void Update(GameTime gT, RenderableObject obj ) {
+        public virtual void Update(GameTime gT,  Objects.Base.RenderableObject obj ) {
         }
     }
 }

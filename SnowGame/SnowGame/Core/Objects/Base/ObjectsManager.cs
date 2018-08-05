@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SnowGame.Core.Objects.Core {
+namespace SnowGame.Core.Objects.Base {
     public class ObjectsManager {
         #region Objects List.
-        private List<Objects.Core.RenderableObject> _objects;
+        private List<Objects.Base.RenderableObject> _objects;
         #endregion.
 
         /// <summary>
         /// Create new instance of ObjectsManager.
         /// </summary>
         public ObjectsManager() {
-            _objects = new List<Objects.Core.RenderableObject>();
+            _objects = new List<Objects.Base.RenderableObject>();
         }
 
         /// <summary>
         /// Add an object to this manager.
         /// </summary>
         /// <param name="obj"></param>
-        public void Add( Objects.Core.RenderableObject obj ) {
+        public void Add( Objects.Base.RenderableObject obj ) {
             _objects.Add(obj);
         }
 
@@ -31,7 +31,7 @@ namespace SnowGame.Core.Objects.Core {
         ///  Remove an object from this manager.
         /// </summary>
         /// <param name="obj"></param>
-        public void Remove( Objects.Core.RenderableObject obj) {
+        public void Remove( Objects.Base.RenderableObject obj) {
             _objects.Remove(obj);
         }
 
@@ -39,7 +39,7 @@ namespace SnowGame.Core.Objects.Core {
         /// Return an array of all the current objects in this manager.
         /// </summary>
         /// <returns></returns>
-        public Objects.Core.RenderableObject[] GetAllObjects() {
+        public Objects.Base.RenderableObject[] GetAllObjects() {
             return _objects.ToArray();
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SnowGame.Core.Objects.Core {
+namespace SnowGame.Core.Objects.Base {
     public class RenderableObject {
 
         #region TextureParams
@@ -67,7 +67,7 @@ namespace SnowGame.Core.Objects.Core {
         #endregion
 
         #region Modules.
-        private List<Module> _modules;
+        private List<Core.Modules.Base.Module> _modules;
         #endregion
 
         #region Get/Sets 
@@ -193,7 +193,7 @@ namespace SnowGame.Core.Objects.Core {
             _localPosition = new Vector2(0, 0);
             _globalPosition = new Vector2(0, 0);
             _objects = new ObjectsManager();
-            _modules = new List<Module>();
+            _modules = new List<Modules.Base.Module>();
         }
         #endregion
 
@@ -203,7 +203,7 @@ namespace SnowGame.Core.Objects.Core {
         /// Add an object to this manager.
         /// </summary>
         /// <param name="obj"></param>
-        public void Add(Objects.Core.RenderableObject obj) {
+        public void Add(Objects.Base.RenderableObject obj) {
             _objects.Add(obj);
             obj._parent = this;
         }
@@ -212,7 +212,7 @@ namespace SnowGame.Core.Objects.Core {
         ///  Remove an object from this manager.
         /// </summary>
         /// <param name="obj"></param>
-        public void Remove(Objects.Core.RenderableObject obj) {
+        public void Remove(Objects.Base.RenderableObject obj) {
             _objects.Remove(obj);
         }
 
@@ -231,7 +231,7 @@ namespace SnowGame.Core.Objects.Core {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public bool AddModule<T>() where T : Module, new() {
+        public bool AddModule<T>() where T : Modules.Base.Module, new() {
                 // Made our Module List if it doesn't exist:
                 // Make sure module can only be added once.
                 for ( int i = 0; i < _modules.Count; i++) {
@@ -249,7 +249,7 @@ namespace SnowGame.Core.Objects.Core {
             /// </summary>
             /// <typeparam name="T"></typeparam>
             /// <returns></returns>
-            public T GetModule<T>() where T : Module {
+            public T GetModule<T>() where T : Modules.Base.Module {
                 // Find and return our module.
                 for (int i = 0; i < _modules.Count; i++) {
                     if (typeof(T).IsInstanceOfType(_modules[i])) {
@@ -266,7 +266,7 @@ namespace SnowGame.Core.Objects.Core {
             /// </summary>
             /// <typeparam name="T"></typeparam>
             /// <returns></returns>
-            public bool RemoveModule<T>() where T : Module {
+            public bool RemoveModule<T>() where T : Modules.Base.Module {
                 // Find and remove our module.
                 for (int i = 0; i < _modules.Count; i++) {
                     if (typeof(T).IsInstanceOfType(_modules[i])) {

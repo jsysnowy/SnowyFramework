@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SnowGame.SnowGame.Scenes  {
     class MainGame : Core.Scenes.Scene {
 
-        private List<Core.Objects.Core.RenderableObject> promptys;
+        private List<Core.Objects.Base.RenderableObject> promptys;
         Random Random;
 
         /// <summary>
@@ -32,28 +32,28 @@ namespace SnowGame.SnowGame.Scenes  {
         /// Initialises this Scene.
         /// </summary>
         public override void Initialise() {
-            promptys = new List<Core.Objects.Core.RenderableObject>();
+            promptys = new List<Core.Objects.Base.RenderableObject>();
 
-            Core.Objects.Core.RenderableObject background = new Core.Objects.Core.RenderableObject();
+            Core.Objects.Base.RenderableObject background = new Core.Objects.Base.RenderableObject();
             background.Texture = Textures["backgroundgrass"];
             background.X = 0 ;
             background.Y = 0;
             Add(background);
 
-            Core.Objects.Core.RenderableObject character = new Core.Objects.Core.RenderableObject();
+            Core.Objects.Base.RenderableObject character = new Core.Objects.Base.RenderableObject();
             Add(character);
             character.Texture = Textures["character"];
             character.X = 100;
             character.Y = 100;
-            character.AddModule<Core.Objects.Modules.MoveRightModule>();
+            character.AddModule<Core.Modules.MoveRightModule>();
 
-            Core.Objects.Core.RenderableObject bow = new Core.Objects.Core.RenderableObject();
+            Core.Objects.Base.RenderableObject bow = new Core.Objects.Base.RenderableObject();
             character.Add(bow);
             bow.Texture = Textures["bow"];
             bow.X = 0;
             bow.Y = 0;
 
-            Core.Objects.Core.RenderableObject arrow = new Core.Objects.Core.RenderableObject();
+            Core.Objects.Base.RenderableObject arrow = new Core.Objects.Base.RenderableObject();
             bow.Add(arrow);
             arrow.Texture = Textures["arrow"];
             arrow.X = 0;
