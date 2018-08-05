@@ -46,6 +46,10 @@ namespace SnowGame.Core.Objects.Core {
         private float _zIndex;
         #endregion
 
+        #region Modules.
+        private List<Module> _modules;
+        #endregion
+
         #region Get/Sets 
 
         /// <summary>
@@ -118,9 +122,79 @@ namespace SnowGame.Core.Objects.Core {
         }
         #endregion
 
-        #region Virtual Functions.
-        public virtual void Update( GameTime gt ) {
+        #region Constructor
+        public RenderableObject() {
+            // Create modules list:
+            _modules = new List<Module>();
+        }
+        #endregion
 
+        #region ModuleManagement.
+        /// <summary>
+        /// Add a module to a RenderableObject
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public bool AddModule<T>() where T : Module, new() {
+            // Made our Module List if it doesn't exist:
+            // Make sure module can only be added once.
+            for ( int i = 0; i < _modules.Count; i++) {
+                if ( typeof(T).IsInstanceOfType(_modules[i])) {
+                    return false;
+                }
+            }
+
+            _modules.Add( new T() );
+            return true;
+        }
+
+        /// <summary>
+        /// Get and return module with type T.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetModule<T>() where T : Module {
+            // Find and return our module.
+            for (int i = 0; i < _modules.Count; i++) {
+                if (typeof(T).IsInstanceOfType(_modules[i])) {
+                    return (T)_modules[i];
+                }
+            }
+
+            // No module was found.
+            return null;
+        }
+
+        /// <summary>
+        /// Find and remove module with type T.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public bool RemoveModule<T>() where T : Module {
+            // Find and remove our module.
+            for (int i = 0; i < _modules.Count; i++) {
+                if (typeof(T).IsInstanceOfType(_modules[i])) {
+                    _modules.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            // No module was removed.
+            return false;
+        }
+        #endregion
+
+
+
+        #region Virtual Functions.
+        /// <summary>
+        /// Updates this Renderable Object - this handles all module updates.
+        /// </summary>
+        /// <param name="gT"></param>
+        public virtual void Update( GameTime gT ) {
+            for ( int i = 0; i < _modules.Count; i++) {
+                _modules[i].Update(gT, this);
+            }
         }
         #endregion
 
@@ -131,6 +205,7 @@ namespace SnowGame.Core.Objects.Core {
         /// <param name="sB"></param>
         public virtual void Draw( SpriteBatch sB ) {
             if ( _baseTexture != null && _screenPosition != null ) {
+                System.Diagnostics.Trace.WriteLine(_screenPosition.X );
                 sB.Draw(_baseTexture, _screenPosition, Color.White);
             }
         }

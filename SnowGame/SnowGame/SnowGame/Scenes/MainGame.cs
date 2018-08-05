@@ -31,13 +31,14 @@ namespace SnowGame.SnowGame.Scenes  {
         public override void Initialise() {
             promptys = new List<Core.Objects.Core.RenderableObject>();
 
-            for ( int i = 0; i < 100; i++) {
+            for ( int i = 0; i < 10; i++) {
                 Core.Objects.Core.RenderableObject prompty = new Core.Objects.Core.RenderableObject();
                 prompty.Texture = Textures["promptylogo"];
-                prompty.X = -300 + i;
-                prompty.Y = -500 + i;
+                prompty.X = 0 ;
+                prompty.Y =  i;
                 Add(prompty);
                 promptys.Add(prompty);
+                prompty.AddModule<Core.Objects.Modules.MoveRightModule>();
             }
 
         }
@@ -49,11 +50,12 @@ namespace SnowGame.SnowGame.Scenes  {
         /// <param name="gT"></param>
         public override void Update(GameTime gT) {
             for ( int i = 0; i < promptys.Count; i++) {
-            promptys[i].X = Core.Config.GameConfiguration.DEFAULT_WIDTH/2  +(float)Math.Cos(gT.TotalGameTime.TotalMilliseconds/ (600*Random.NextDouble())) * 300.0f;
-            promptys[i].Y = Core.Config.GameConfiguration.DEFAULT_HEIGHT / 2 + (float)Math.Sin(gT.TotalGameTime.TotalMilliseconds / (500*Random.NextDouble())) * 300.0f;
+            //promptys[i].X = Core.Config.GameConfiguration.DEFAULT_WIDTH/2  +(float)Math.Cos(gT.TotalGameTime.TotalMilliseconds/ (600*Random.NextDouble())) * 300.0f;
+            //promptys[i].Y = Core.Config.GameConfiguration.DEFAULT_HEIGHT / 2 + (float)Math.Sin(gT.TotalGameTime.TotalMilliseconds / (500*Random.NextDouble())) * 300.0f;
 
             }
 
+            base.Update(gT);
         }
     }
 }

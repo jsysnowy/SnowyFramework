@@ -113,7 +113,7 @@ namespace SnowGame.Core.Scenes {
         /// </summary>
         /// <param name="gT"></param>
         public virtual void Update( GameTime gT) {
-            
+            _objectsManager.Update(gT);
         }
 
         /// <summary>

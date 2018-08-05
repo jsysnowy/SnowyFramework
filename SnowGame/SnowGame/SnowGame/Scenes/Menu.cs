@@ -33,6 +33,7 @@ namespace SnowGame.SnowGame.Scenes  {
             position.X = Core.Config.GameConfiguration.DEFAULT_WIDTH/2  +(float)Math.Sin(gT.TotalGameTime.TotalMilliseconds/1000) * 300.0f;
             position.Y = Core.Config.GameConfiguration.DEFAULT_HEIGHT / 2 + (float)Math.Cos(gT.TotalGameTime.TotalMilliseconds / 900) * 300.0f;
 
+            base.Update(gT);
         }
     }
 }

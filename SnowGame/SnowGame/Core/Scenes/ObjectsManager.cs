@@ -50,11 +50,22 @@ namespace SnowGame.Core.Scenes {
         }
 
         /// <summary>
+        /// Updates all objects in ObjectsManager
+        /// </summary>
+        /// <param name="gT"></param>
+        public void Update( GameTime gT) {
+            for (int i = 0; i < _objects.Count; i++) {
+                _objects[i].Update(gT);
+            }
+        }
+
+        /// <summary>
         /// Draws all objects in this manager.
         /// </summary>
         public void Draw( SpriteBatch sB ) {
+            // Draw all Objects in manager to screen:
             for ( int i = 0; i < _objects.Count; i++) {
-                sB.Draw(_objects[i].Texture, _objects[i].Position, Color.White);
+                _objects[i].Draw(sB);
             }
         }
     }
