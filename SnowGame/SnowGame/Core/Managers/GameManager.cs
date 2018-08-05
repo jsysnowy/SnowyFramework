@@ -7,10 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-namespace SnowGame.Core.Game {
-
-    
-
+namespace SnowGame.Core.Managers {
+   
     public sealed class GameManager {
 
         #region Private variables

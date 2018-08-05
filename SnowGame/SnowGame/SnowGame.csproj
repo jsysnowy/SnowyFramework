@@ -43,14 +43,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\Config\GameConfiguration.cs" />
-    <Compile Include="Core\Game\GameManager.cs" />
-    <Compile Include="Core\Modules\Bass\Module.cs" />
+    <Compile Include="Core\Managers\GameManager.cs" />
+    <Compile Include="Core\Modules\Base\Module.cs" />
     <Compile Include="Core\Objects\Base\RenderableObject.cs" />
     <Compile Include="Core\Modules\MoveDownModules.cs" />
     <Compile Include="Core\Modules\MoveRightModule.cs" />
-    <Compile Include="Core\Objects\Base\ObjectsManager.cs" />
+    <Compile Include="Core\Managers\ObjectsManager.cs" />
     <Compile Include="Core\Scenes\Scene.cs" />
-    <Compile Include="Core\Scenes\SceneManager.cs" />
+    <Compile Include="Core\Managers\SceneManager.cs" />
     <Compile Include="Core\Singleton\Singleton.cs" />
     <Compile Include="Loader\Loader.cs" />
     <Compile Include="Main.cs" />

@@ -25,7 +25,7 @@ namespace SnowGame.Loader {
         /// </summary>
         public Loader() {
             // Store content from GameManager:
-            _content = Core.Game.GameManager.Instance.Content;
+            _content = Core.Managers.GameManager.Instance.Content;
         }
    
 
@@ -34,7 +34,7 @@ namespace SnowGame.Loader {
         /// </summary>
         public void loadScene( Core.Scenes.Scene scene ) {
             // Setup new SpriteBatch:
-            SpriteBatch _spriteBatch = new SpriteBatch( Core.Game.GameManager.Instance.GraphicsDevice );
+            SpriteBatch _spriteBatch = new SpriteBatch( Core.Managers.GameManager.Instance.GraphicsDevice );
 
             // Create dictionary for textures..?
             Dictionary<string, Texture2D> textureDict = new Dictionary<string, Texture2D>();

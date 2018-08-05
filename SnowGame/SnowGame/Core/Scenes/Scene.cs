@@ -33,7 +33,7 @@ namespace SnowGame.Core.Scenes {
         /// <summary>
         /// ObjectsManager stores all objects inside this scene.
         /// </summary>
-        private Core.Objects.Base.ObjectsManager _objectsManager;
+        private Core.Managers.ObjectsManager _objectsManager;
 
         #endregion
 
@@ -77,7 +77,7 @@ namespace SnowGame.Core.Scenes {
             _sceneName = name;
 
             // ObjectsManager on each scene, handles references to all objects in this scene.
-            _objectsManager = new Core.Objects.Base.ObjectsManager();
+            _objectsManager = new Managers.ObjectsManager();
 
             // Store all textures in dictionary?  Is there a better way - probably..
             Textures = new Dictionary<string, Texture2D>();

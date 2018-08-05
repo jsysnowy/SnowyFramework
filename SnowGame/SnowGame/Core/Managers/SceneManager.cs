@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace SnowGame.Core.Scenes {
+namespace SnowGame.Core.Managers {
     public sealed class SceneManager {
         #region Class Field
         /// <summary>
@@ -18,12 +18,12 @@ namespace SnowGame.Core.Scenes {
         /// <summary>
         /// Stores the currently active scene.
         /// </summary>
-        private Scene _currentActiveScene;
+        private Scenes.Scene _currentActiveScene;
 
         /// <summary>
         /// Stores list of all scenes added to SceneManager.
         /// </summary>
-        private List<Scene> _scenes;
+        private List<Scenes.Scene> _scenes;
 
         #endregion
 
@@ -47,7 +47,7 @@ namespace SnowGame.Core.Scenes {
             _sceneLoader = new Loader.Loader();
 
             // Create list of all scenes:
-            _scenes = new List<Scene>();
+            _scenes = new List<Scenes.Scene>();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace SnowGame.Core.Scenes {
         /// </summary>
         /// <param name="scene"></param>
         /// <returns></returns>
-        public bool AddScene( Scene scene ) {
+        public bool AddScene( Scenes.Scene scene ) {
             for ( int i = 0; i < _scenes.Count; i++) {
                 if ( _scenes[i].Name == scene.Name ) {
                     return false;
@@ -71,7 +71,7 @@ namespace SnowGame.Core.Scenes {
         /// Tell passed in scene to activate.
         /// </summary>
         /// <param name="scene"></param>
-        public bool ActivateScene( Scene scene ) {
+        public bool ActivateScene( Scenes.Scene scene ) {
             if ( AddScene(scene) ) {
                 _activateScene(scene);
                 return true;
@@ -122,7 +122,7 @@ namespace SnowGame.Core.Scenes {
         /// Previous scene is unloaded, new scene is activated and loaded.
         /// </summary>
         /// <param name="scene"></param>
-        private void _activateScene( Scene scene ) {
+        private void _activateScene(Scenes.Scene scene ) {
 
             // Unload a scene if one is already loaded:
             if ( _currentActiveScene != null) {

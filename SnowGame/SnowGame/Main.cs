@@ -14,8 +14,8 @@ namespace SnowGame
         SpriteBatch spriteBatch;
 
         // SnowGame core:
-        Core.Scenes.SceneManager sceneManager;
-        Core.Game.GameManager gameManager;
+        Core.Managers.SceneManager sceneManager;
+        Core.Managers.GameManager gameManager;
 
         // TEMP
         private SnowGame.Scenes.Menu Menu;
@@ -52,11 +52,11 @@ namespace SnowGame
             // TODO: Add your initialization logic here
 
             // Make game manager:
-            gameManager = Core.Game.GameManager.Instance;
+            gameManager = Core.Managers.GameManager.Instance;
             gameManager.Init(this.Content, this.GraphicsDevice);
 
             // Make scene manager:
-            sceneManager = Core.Scenes.SceneManager.Instance;
+            sceneManager = Core.Managers.SceneManager.Instance;
 
             // Scenes, these will move to where they are needed in future:
             Menu = new SnowGame.Scenes.Menu();

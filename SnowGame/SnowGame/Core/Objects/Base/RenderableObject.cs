@@ -62,7 +62,7 @@ namespace SnowGame.Core.Objects.Base {
         /// <summary>
         /// Managed used to store all children of this object.
         /// </summary>
-        private ObjectsManager _objects;
+        private Managers.ObjectsManager _objects;
 
         #endregion
 
@@ -192,7 +192,7 @@ namespace SnowGame.Core.Objects.Base {
             // Create modules list:
             _localPosition = new Vector2(0, 0);
             _globalPosition = new Vector2(0, 0);
-            _objects = new ObjectsManager();
+            _objects = new Managers.ObjectsManager();
             _modules = new List<Modules.Base.Module>();
         }
         #endregion

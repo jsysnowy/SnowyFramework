@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SnowGame.Core.Objects.Base {
+namespace SnowGame.Core.Managers {
     public class ObjectsManager {
         #region Objects List.
         private List<Objects.Base.RenderableObject> _objects;
