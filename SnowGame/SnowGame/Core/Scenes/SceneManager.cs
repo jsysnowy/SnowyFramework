@@ -126,6 +126,7 @@ namespace SnowGame.Core.Scenes {
 
             System.Diagnostics.Trace.WriteLine("Scene activated: " + scene.Name);
             if ( _currentActiveScene != null) {
+                _currentActiveScene.Unload();
                 _sceneLoader.unloadScene(_currentActiveScene);
             }
 
@@ -134,6 +135,9 @@ namespace SnowGame.Core.Scenes {
 
             // Load all content for new scene:
             _sceneLoader.loadScene(_currentActiveScene);
+
+            // Initialises the scene:
+            _currentActiveScene.Initialise();
         }
         #endregion
 

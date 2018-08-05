@@ -34,16 +34,5 @@ namespace SnowGame.SnowGame.Scenes  {
             position.Y = Core.Config.GameConfiguration.DEFAULT_HEIGHT / 2 + (float)Math.Cos(gT.TotalGameTime.TotalMilliseconds / 900) * 300.0f;
 
         }
-
-        /// <summary>
-        /// Draw this scene:
-        /// </summary>
-        public override void Draw() {
-            spriteBatch.Begin();
-
-            spriteBatch.Draw(Textures["pitsprite"], position, Color.White);
-
-            spriteBatch.End();
-        }
     }
 }

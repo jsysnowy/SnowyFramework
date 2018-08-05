@@ -58,13 +58,16 @@ namespace SnowGame
             // Make scene manager:
             sceneManager = Core.Scenes.SceneManager.Instance;
 
+            // Scenes, these will move to where they are needed in future:
             Menu = new SnowGame.Scenes.Menu();
             MainGame = new SnowGame.Scenes.MainGame();
 
+            // Attach scenes to manager .. again not really needed here
             sceneManager.AddScene(Menu);
             sceneManager.AddScene(MainGame);
 
-            sceneManager.ActivateScene(MainGame);
+            // Lets start with the Menu cuz thats the easiest:
+            sceneManager.ActivateScene(Menu);
 
 
             // Calling base.Initialize will enumerate through any components
@@ -122,6 +125,8 @@ namespace SnowGame
             // BASE - update main game with dT.
             base.Update(gameTime);
         }
+
+        /// Heading out for a bit - back on later.
 
         /// <summary>
         /// This is called when the game should draw itself.

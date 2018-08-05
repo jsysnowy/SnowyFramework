@@ -9,7 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SnowGame.SnowGame.Scenes  {
     class MainGame : Core.Scenes.Scene {
 
-        private Vector2 position;
+        private List<Core.Objects.Core.RenderableObject> promptys;
+        Random Random;
 
         /// <summary>
         /// Creates a new Menu Scene
@@ -21,29 +22,38 @@ namespace SnowGame.SnowGame.Scenes  {
                 "promptylogo"
             };
 
-            position = new Vector2(20, 20);
+            Random = new Random();
+        }
+
+        /// <summary>
+        /// Initialises this Scene.
+        /// </summary>
+        public override void Initialise() {
+            promptys = new List<Core.Objects.Core.RenderableObject>();
+
+            for ( int i = 0; i < 100; i++) {
+                Core.Objects.Core.RenderableObject prompty = new Core.Objects.Core.RenderableObject();
+                prompty.Texture = Textures["promptylogo"];
+                prompty.X = -300 + i;
+                prompty.Y = -500 + i;
+                Add(prompty);
+                promptys.Add(prompty);
+            }
 
         }
+
 
         /// <summary>
         /// Update this scene:
         /// </summary>
         /// <param name="gT"></param>
         public override void Update(GameTime gT) {
-            position.X = Core.Config.GameConfiguration.DEFAULT_WIDTH/2  +(float)Math.Cos(gT.TotalGameTime.TotalMilliseconds/600) * 300.0f;
-            position.Y = Core.Config.GameConfiguration.DEFAULT_HEIGHT / 2 + (float)Math.Sin(gT.TotalGameTime.TotalMilliseconds / 500) * 300.0f;
+            for ( int i = 0; i < promptys.Count; i++) {
+            promptys[i].X = Core.Config.GameConfiguration.DEFAULT_WIDTH/2  +(float)Math.Cos(gT.TotalGameTime.TotalMilliseconds/ (600*Random.NextDouble())) * 300.0f;
+            promptys[i].Y = Core.Config.GameConfiguration.DEFAULT_HEIGHT / 2 + (float)Math.Sin(gT.TotalGameTime.TotalMilliseconds / (500*Random.NextDouble())) * 300.0f;
 
-        }
+            }
 
-        /// <summary>
-        /// Draw this scene:
-        /// </summary>
-        public override void Draw() {
-            spriteBatch.Begin();
-
-            spriteBatch.Draw(Textures["promptylogo"], position, Color.White);
-
-            spriteBatch.End();
         }
     }
 }

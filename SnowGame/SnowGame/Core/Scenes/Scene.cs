@@ -30,6 +30,11 @@ namespace SnowGame.Core.Scenes {
         /// </summary>
         public Dictionary<string, Texture2D> Textures { get; set; }
 
+        /// <summary>
+        /// ObjectsManager stores all objects inside this scene.
+        /// </summary>
+        private ObjectsManager _objectsManager;
+
         #endregion
 
         #region Get/Sets
@@ -63,7 +68,6 @@ namespace SnowGame.Core.Scenes {
         #endregion
 
         #region Constructor
-
         /// <summary>
         /// Create scene with passed in name, name used for management.
         /// </summary>
@@ -72,15 +76,37 @@ namespace SnowGame.Core.Scenes {
             // Store Scenes name:
             _sceneName = name;
 
+            // ObjectsManager on each scene, handles references to all objects in this scene.
+            _objectsManager = new ObjectsManager();
+
             // Store all textures in dictionary?  Is there a better way - probably..
             Textures = new Dictionary<string, Texture2D>();
+
         }
         #endregion
+            
+        /// <summary>
+        /// Called once the state has been loaded. 
+        /// </summary>
+        public virtual void Initialise() {
 
-        #region Loading Scene Assets
+        }
+
+        /// <summary>
+        /// Called when state is unloaded.
+        /// </summary>
+        public void Unload() {
+            _objectsManager.Clear();
+        }
 
 
-        #endregion
+        /// <summary>
+        /// Add an object to this scene
+        /// </summary>
+        /// <param name="obj"></param>
+        public void Add( Core.Objects.Core.RenderableObject obj) {
+            _objectsManager.Add(obj);
+        }
 
         /// <summary>
         /// Overwritable Update function:
@@ -93,8 +119,10 @@ namespace SnowGame.Core.Scenes {
         /// <summary>
         /// Draws Scene to the game context:
         /// </summary>
-        public virtual void Draw( ) {
-
+        public void Draw( ) {
+            spriteBatch.Begin();
+            _objectsManager.Draw(spriteBatch);
+            spriteBatch.End();
         }
     }
 }
