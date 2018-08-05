@@ -47,6 +47,7 @@
     <Compile Include="Core\Managers\InteractionManager.cs" />
     <Compile Include="Core\Modules\Base\Module.cs" />
     <Compile Include="Core\Modules\PlayerController.cs" />
+    <Compile Include="Core\Modules\ProjectileComponent.cs" />
     <Compile Include="Core\Objects\Base\RenderableObject.cs" />
     <Compile Include="Core\Modules\MoveDownModules.cs" />
     <Compile Include="Core\Modules\MoveRightModule.cs" />

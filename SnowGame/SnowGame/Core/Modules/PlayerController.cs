@@ -22,17 +22,27 @@ namespace SnowGame.Core.Modules {
             _interactionManager.Update();
 
             if ( _interactionManager.KeyboardState.IsKeyDown(Keys.W )) {
-                obj.Y -= 2f;
+                obj.Y -= 6f;
             }
             if (_interactionManager.KeyboardState.IsKeyDown(Keys.A)) {
-                obj.X -= 2f;
+                obj.X -= 6f;
             }
             if (_interactionManager.KeyboardState.IsKeyDown(Keys.S)) {
-                obj.Y += 2f;
+                obj.Y += 6f;
             }
             if (_interactionManager.KeyboardState.IsKeyDown(Keys.D)) {
-                obj.X += 2f;
+                obj.X += 6f;
             }
+
+            if ( _interactionManager.GamePadState.IsButtonDown(Buttons.RightTrigger)) {
+                if (!(_interactionManager.GamePadState.ThumbSticks.Right.X == 0 && _interactionManager.GamePadState.ThumbSticks.Right.Y == 0)) {
+                    Vector2 direction = new Vector2(_interactionManager.GamePadState.ThumbSticks.Right.X * 12.0f, _interactionManager.GamePadState.ThumbSticks.Right.Y * -12.0f);
+                    SnowGame.Scenes.MainGame.Instance.fireArrow(direction);
+                }
+            }
+
+            obj.X += _interactionManager.GamePadState.ThumbSticks.Left.X * 6.0f;
+            obj.Y -= _interactionManager.GamePadState.ThumbSticks.Left.Y * 6.0f;
         }
     }
 }

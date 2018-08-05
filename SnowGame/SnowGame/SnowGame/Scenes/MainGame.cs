@@ -9,13 +9,19 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SnowGame.SnowGame.Scenes  {
     class MainGame : Core.Scenes.Scene {
 
-        private List<Core.Objects.Base.RenderableObject> promptys;
-        Random Random;
+        public static MainGame Instance;
+
+        /// <summary>
+        /// Arrow fired..?
+        /// </summary>
+        public Core.Objects.Base.RenderableObject character;
 
         /// <summary>
         /// Creates a new Menu Scene
         /// </summary>
         public MainGame(): base("MainGame") {
+
+            MainGame.Instance = this;
 
             // TODO: Move to new function? Set all the textures this scene will load.
             LoadedTextures = new string[] {
@@ -25,14 +31,12 @@ namespace SnowGame.SnowGame.Scenes  {
                 "arrow"
             };
 
-            Random = new Random();
         }
 
         /// <summary>
         /// Initialises this Scene.
         /// </summary>
         public override void Initialise() {
-            promptys = new List<Core.Objects.Base.RenderableObject>();
 
             Core.Objects.Base.RenderableObject background = new Core.Objects.Base.RenderableObject();
             background.Texture = Textures["backgroundgrass"];
@@ -40,26 +44,31 @@ namespace SnowGame.SnowGame.Scenes  {
             background.Y = 0;
             Add(background);
 
-            Core.Objects.Base.RenderableObject character = new Core.Objects.Base.RenderableObject();
+            character = new Core.Objects.Base.RenderableObject();
             Add(character);
             character.Texture = Textures["character"];
             character.X = 100;
             character.Y = 100;
             character.AddModule<Core.Modules.PlayerController>();
-            character.AddModule<Core.Modules.MoveRightModule>();
 
             Core.Objects.Base.RenderableObject bow = new Core.Objects.Base.RenderableObject();
             character.Add(bow);
             bow.Texture = Textures["bow"];
             bow.X = 90;
             bow.Y = 60;
-
-            Core.Objects.Base.RenderableObject arrow = new Core.Objects.Base.RenderableObject();
-            bow.Add(arrow);
-            arrow.Texture = Textures["arrow"];
-            arrow.X = 5;
-            arrow.Y = 50;
         }
+
+        public void fireArrow(Vector2 direction) {
+            Core.Objects.Base.RenderableObject arrow = new Core.Objects.Base.RenderableObject();
+            Add(arrow);
+            arrow.X = character.X + 35;
+            arrow.Y = character.Y + 100;
+            arrow.Texture = Textures["arrow"];
+            System.Diagnostics.Trace.WriteLine(direction);
+            arrow.AddModule<Core.Modules.ProjectileComponent>();
+            arrow.GetModule<Core.Modules.ProjectileComponent>().Direction = direction;
+        }
+
 
 
         /// <summary>
