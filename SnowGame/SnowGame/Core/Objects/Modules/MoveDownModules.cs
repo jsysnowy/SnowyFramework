@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework;
 using SnowGame.Core.Objects.Core;
 
 namespace SnowGame.Core.Objects.Modules {
-    class MoveRightModule : Core.Module {
+    class MoveDownModules : Core.Module {
         public override void Update(GameTime gT, RenderableObject obj) {
-            obj.X += 0.1f;
+            obj.Y += 0.1f;
             base.Update(gT, obj);
         }
     }

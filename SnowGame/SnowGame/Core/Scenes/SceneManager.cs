@@ -124,7 +124,7 @@ namespace SnowGame.Core.Scenes {
         /// <param name="scene"></param>
         private void _activateScene( Scene scene ) {
 
-            System.Diagnostics.Trace.WriteLine("Scene activated: " + scene.Name);
+            // Unload a scene if one is already loaded:
             if ( _currentActiveScene != null) {
                 _currentActiveScene.Unload();
                 _sceneLoader.unloadScene(_currentActiveScene);

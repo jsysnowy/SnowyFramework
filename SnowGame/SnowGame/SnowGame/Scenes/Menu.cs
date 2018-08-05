@@ -30,6 +30,7 @@ namespace SnowGame.SnowGame.Scenes  {
         /// </summary>
         /// <param name="gT"></param>
         public override void Update(GameTime gT) {
+
             position.X = Core.Config.GameConfiguration.DEFAULT_WIDTH/2  +(float)Math.Sin(gT.TotalGameTime.TotalMilliseconds/1000) * 300.0f;
             position.Y = Core.Config.GameConfiguration.DEFAULT_HEIGHT / 2 + (float)Math.Cos(gT.TotalGameTime.TotalMilliseconds / 900) * 300.0f;
 
