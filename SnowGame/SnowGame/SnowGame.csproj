@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\Config\GameConfiguration.cs" />
+    <Compile Include="Core\Interaction\InteractionBinding.cs" />
     <Compile Include="Core\Managers\GameManager.cs" />
     <Compile Include="Core\Managers\InteractionManager.cs" />
     <Compile Include="Core\Modules\Base\Module.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Core\Modules\MoveDownModules.cs" />
     <Compile Include="Core\Modules\MoveRightModule.cs" />
     <Compile Include="Core\Managers\ObjectsManager.cs" />
+    <Compile Include="Core\Objects\PlayerControlledSprite.cs" />
     <Compile Include="Core\Scenes\Scene.cs" />
     <Compile Include="Core\Managers\SceneManager.cs" />
     <Compile Include="Core\Singleton\Singleton.cs" />

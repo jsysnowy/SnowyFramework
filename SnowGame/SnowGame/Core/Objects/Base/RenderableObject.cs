@@ -231,17 +231,18 @@ namespace SnowGame.Core.Objects.Base {
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public bool AddModule<T>() where T : Modules.Base.Module, new() {
+        public T AddModule<T>() where T : Modules.Base.Module, new() {
                 // Made our Module List if it doesn't exist:
                 // Make sure module can only be added once.
                 for ( int i = 0; i < _modules.Count; i++) {
                     if ( typeof(T).IsInstanceOfType(_modules[i])) {
-                        return false;
+                        return (T)_modules[i];
                     }
                 }
 
-                _modules.Add( new T() );
-                return true;
+                T newModule = new T();
+                _modules.Add(newModule);
+                return newModule;
             }
 
             /// <summary>

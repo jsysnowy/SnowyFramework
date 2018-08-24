@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace SnowGame.Core.Managers {
-    class InteractionManager {
+    public class InteractionManager {
 
         #region Flags.
 
@@ -28,11 +28,6 @@ namespace SnowGame.Core.Managers {
         #endregion
 
         #region Custom events.
-
-        /// <summary>
-        /// Dictions stores whether custom events have triggered or not.
-        /// </summary>
-        private Dictionary<string, bool> _customEventTriggers;
 
         #endregion
 
@@ -62,6 +57,19 @@ namespace SnowGame.Core.Managers {
         #endregion
 
         #region Gets/Sets
+
+        /// <summary>
+        /// Get/Set current playerIndex.
+        /// </summary>
+        public PlayerIndex PlayerIndex {
+            get {
+                return _playerIndex;
+            }
+            set {
+                _playerIndex = value;
+            }
+        }
+
 
         /// <summary>
         /// Return current KeyboardState
@@ -101,9 +109,6 @@ namespace SnowGame.Core.Managers {
             _playerIndex = playerIndex;
             _usingKeyboard = usingKeyboard;
             _usingGamePad = usingGamePad;
-
-            // Create dictionary of custom events
-            _customEventTriggers = new Dictionary<string, bool>();
         }
         #endregion
 
@@ -121,10 +126,14 @@ namespace SnowGame.Core.Managers {
         /// Updates current state of InteractionManager.
         /// </summary>
         public void Update() {
+
+
+
             if ( _usingKeyboard) {
                 _keyState = Keyboard.GetState();
                 _mouseState = Mouse.GetState();
             }
+            
 
             if (_usingGamePad) {
                 _gamepadState = GamePad.GetState( _playerIndex);

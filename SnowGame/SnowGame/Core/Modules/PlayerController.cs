@@ -7,42 +7,35 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace SnowGame.Core.Modules {
-    class PlayerController : Base.Module {
+    public class PlayerController : Base.Module {
 
+        /// <summary>
+        /// Stores InteractionManager associated with this PlayerController.
+        /// </summary>
         private Managers.InteractionManager _interactionManager;
 
-        public float Speed { get; set; } = 0.1f;
 
+        /// <summary>
+        ///  Create a new PlayerController module.
+        /// </summary>
         public PlayerController() {
             _interactionManager = new Managers.InteractionManager(PlayerIndex.One, true, true);
         }
+            
+        /// <summary>
+        /// Pass in which playerindex you want this PlayerController to use.
+        /// </summary>
+        public void setPlayerIndex( PlayerIndex playerIndex) {
+            _interactionManager.PlayerIndex = playerIndex;
+        }
 
+        /// <summary>
+        /// Update this PlayerController.
+        /// </summary>
+        /// <param name="gT"></param>
+        /// <param name="obj"></param>
         public override void Update(GameTime gT, Objects.Base.RenderableObject obj) {
-
             _interactionManager.Update();
-
-            if ( _interactionManager.KeyboardState.IsKeyDown(Keys.W )) {
-                obj.Y -= 6f;
-            }
-            if (_interactionManager.KeyboardState.IsKeyDown(Keys.A)) {
-                obj.X -= 6f;
-            }
-            if (_interactionManager.KeyboardState.IsKeyDown(Keys.S)) {
-                obj.Y += 6f;
-            }
-            if (_interactionManager.KeyboardState.IsKeyDown(Keys.D)) {
-                obj.X += 6f;
-            }
-
-            if ( _interactionManager.GamePadState.IsButtonDown(Buttons.RightTrigger)) {
-                if (!(_interactionManager.GamePadState.ThumbSticks.Right.X == 0 && _interactionManager.GamePadState.ThumbSticks.Right.Y == 0)) {
-                    Vector2 direction = new Vector2(_interactionManager.GamePadState.ThumbSticks.Right.X * 12.0f, _interactionManager.GamePadState.ThumbSticks.Right.Y * -12.0f);
-                    SnowGame.Scenes.MainGame.Instance.fireArrow(direction);
-                }
-            }
-
-            obj.X += _interactionManager.GamePadState.ThumbSticks.Left.X * 6.0f;
-            obj.Y -= _interactionManager.GamePadState.ThumbSticks.Left.Y * 6.0f;
         }
     }
 }
