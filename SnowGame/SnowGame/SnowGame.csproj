@@ -42,11 +42,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\Camera\Camera.cs" />
+    <Compile Include="Core\Camera\CameraManager.cs" />
     <Compile Include="Core\Config\GameConfiguration.cs" />
     <Compile Include="Core\Interaction\InteractionBinding.cs" />
     <Compile Include="Core\Managers\GameManager.cs" />
     <Compile Include="Core\Managers\InteractionManager.cs" />
     <Compile Include="Core\Modules\Base\Module.cs" />
+    <Compile Include="Core\Modules\GravityModule.cs" />
     <Compile Include="Core\Modules\PlayerController.cs" />
     <Compile Include="Core\Modules\ProjectileComponent.cs" />
     <Compile Include="Core\Objects\Base\RenderableObject.cs" />

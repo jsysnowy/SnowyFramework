@@ -143,6 +143,16 @@ namespace SnowGame.Core.Objects.Base {
         }
 
         /// <summary>
+        /// Readonly get the height of this RenderableObject.
+        /// </summary>
+        public float Height { get { return _height;  } }
+
+        /// <summary>
+        /// Readonly get the width of this RenderableObject.
+        /// </summary>
+        public float Width { get { return _width; } }
+
+        /// <summary>
         /// Get/Set the X value of this RenderableObject.
         /// </summary>
         public float GlobalX {

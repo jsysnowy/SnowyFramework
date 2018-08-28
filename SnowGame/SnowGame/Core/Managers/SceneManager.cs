@@ -110,7 +110,7 @@ namespace SnowGame.Core.Managers {
         /// <summary>
         /// Draws the current scene
         /// </summary>
-        public void Draw (  ) {
+        public void Draw () {
             if ( _currentActiveScene != null) {
             _currentActiveScene.Draw();
 

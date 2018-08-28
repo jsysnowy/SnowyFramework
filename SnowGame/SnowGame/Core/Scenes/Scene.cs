@@ -26,6 +26,16 @@ namespace SnowGame.Core.Scenes {
         public SpriteBatch spriteBatch { get; set; }
 
         /// <summary>
+        /// Stores default camera used by this scene.
+        /// </summary>
+        public Core.Camera.Camera defaultCamera { get; }
+
+        /// <summary>
+        /// Camera used on this scene.
+        /// </summary>
+        private Core.Camera.CameraManager _cameraManager;
+
+        /// <summary>
         /// Dictionary reference to all loaded textures in this scene. Probs will change to some interface kinda thing..?
         /// </summary>
         public Dictionary<string, Texture2D> Textures { get; set; }
@@ -76,6 +86,10 @@ namespace SnowGame.Core.Scenes {
             // Store Scenes name:
             _sceneName = name;
 
+            // CameraManager handles all cameras in this scene.
+            _cameraManager = new Camera.CameraManager(Main.instance.GraphicsDevice.Viewport);
+            defaultCamera = _cameraManager.ActiveCamera;
+
             // ObjectsManager on each scene, handles references to all objects in this scene.
             _objectsManager = new Managers.ObjectsManager();
 
@@ -113,14 +127,15 @@ namespace SnowGame.Core.Scenes {
         /// </summary>
         /// <param name="gT"></param>
         public virtual void Update( GameTime gT) {
+            _cameraManager.ActiveCamera.Update();
             _objectsManager.Update(gT);
         }
 
         /// <summary>
         /// Draws Scene to the game context:
         /// </summary>
-        public void Draw( ) {
-            spriteBatch.Begin();
+        public void Draw() {
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _cameraManager.ActiveCamera.Transform);
             _objectsManager.Draw(spriteBatch);
             spriteBatch.End();
         }

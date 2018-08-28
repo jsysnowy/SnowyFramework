@@ -50,6 +50,7 @@ namespace SnowGame.SnowGame.Scenes  {
             character.X = 100;
             character.Y = 100;
             character.AddModule<Core.Modules.PlayerController>();
+            character.AddModule<Core.Modules.GravityModule>();
 
             Core.Objects.Base.RenderableObject bow = new Core.Objects.Base.RenderableObject();
             character.Add(bow);
@@ -76,8 +77,9 @@ namespace SnowGame.SnowGame.Scenes  {
         /// </summary>
         /// <param name="gT"></param>
         public override void Update(GameTime gT) {
-    
 
+            defaultCamera.X = character.X;
+            defaultCamera.Y = character.Y;
             base.Update(gT);
         }
     }

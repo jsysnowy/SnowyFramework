@@ -9,6 +9,9 @@ namespace SnowGame
     /// </summary>
     public class Main : Game
     {
+        // Lazy statics:
+        public static Main instance;
+
         // Monogame core:
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -16,6 +19,7 @@ namespace SnowGame
         // SnowGame core:
         Core.Managers.SceneManager sceneManager;
         Core.Managers.GameManager gameManager;
+        Core.Camera.Camera myCamera;
 
         // TEMP
         private SnowGame.Scenes.Menu Menu;
@@ -34,11 +38,9 @@ namespace SnowGame
             // Set preferred height/width of the game:
             graphics.PreferredBackBufferWidth = Core.Config.GameConfiguration.DEFAULT_WIDTH;
             graphics.PreferredBackBufferHeight = Core.Config.GameConfiguration.DEFAULT_HEIGHT;
-
+            graphics.IsFullScreen = true;
             
-            Content.RootDirectory = "Content";
-
-            
+            Content.RootDirectory = "Content";  
         }
 
         /// <summary>
@@ -51,12 +53,18 @@ namespace SnowGame
         {
             // TODO: Add your initialization logic here
 
+            // Initialise statics
+            Main.instance = this;
+
             // Make game manager:
             gameManager = Core.Managers.GameManager.Instance;
             gameManager.Init(this.Content, this.GraphicsDevice);
 
             // Make scene manager:
             sceneManager = Core.Managers.SceneManager.Instance;
+
+            // Make Camera:
+            myCamera = new Core.Camera.Camera(GraphicsDevice.Viewport);
 
             // Scenes, these will move to where they are needed in future:
             Menu = new SnowGame.Scenes.Menu();
