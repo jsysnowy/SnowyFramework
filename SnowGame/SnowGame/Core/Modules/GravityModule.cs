@@ -29,9 +29,6 @@ namespace SnowGame.Core.Modules {
         }
 
         public override void Update(GameTime gT, RenderableObject obj) {
-
-            
-
             obj.Y += acceleration;
 
             if ( obj.Y > _floor-obj.Height) {
@@ -41,11 +38,7 @@ namespace SnowGame.Core.Modules {
                 acceleration += strength;
             }
 
-
-
-
             base.Update(gT, obj);
         }
-
     }
 }
