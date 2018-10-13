@@ -250,8 +250,11 @@ namespace SnowGame.Core.Objects.Base {
                     }
                 }
 
-                T newModule = new T();
-                _modules.Add(newModule);
+            T newModule = new T {
+                MyObj = this
+            };
+
+            _modules.Add(newModule);
                 return newModule;
             }
 
@@ -315,6 +318,13 @@ namespace SnowGame.Core.Objects.Base {
 
             // Update all children:
             _objects.Update(gT);
+        }
+
+        /// <summary>
+        /// Called on collision with another renderable object. REQUIRED COLLISION MODULE.
+        /// </summary>
+        /// <param name="other"></param>
+        public virtual void OnCollision( RenderableObject other ) {
         }
         #endregion
 

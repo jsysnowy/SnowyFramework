@@ -44,11 +44,14 @@
   <ItemGroup>
     <Compile Include="Core\Camera\Camera.cs" />
     <Compile Include="Core\Camera\CameraManager.cs" />
+    <Compile Include="Core\Collision\QuadTree.cs" />
     <Compile Include="Core\Config\GameConfiguration.cs" />
     <Compile Include="Core\Interaction\InteractionBinding.cs" />
+    <Compile Include="Core\Managers\CollisionManager.cs" />
     <Compile Include="Core\Managers\GameManager.cs" />
     <Compile Include="Core\Managers\InteractionManager.cs" />
     <Compile Include="Core\Modules\Base\Module.cs" />
+    <Compile Include="Core\Modules\CollisionModule.cs" />
     <Compile Include="Core\Modules\GravityModule.cs" />
     <Compile Include="Core\Modules\PlayerController.cs" />
     <Compile Include="Core\Modules\ProjectileComponent.cs" />

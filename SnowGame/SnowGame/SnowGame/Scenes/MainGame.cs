@@ -10,7 +10,6 @@ namespace SnowGame.SnowGame.Scenes  {
     class MainGame : Core.Scenes.Scene {
 
         public static MainGame Instance;
-
         /// <summary>
         /// Arrow fired..?
         /// </summary>
@@ -49,14 +48,16 @@ namespace SnowGame.SnowGame.Scenes  {
             character.Texture = Textures["character"];
             character.X = 100;
             character.Y = 100;
-            character.AddModule<Core.Modules.PlayerController>();
-            character.AddModule<Core.Modules.GravityModule>();
+            // character.AddModule<Core.Modules.PlayerController>();
+            character.AddModule<Core.Modules.MoveRightModule>();
+            character.AddModule<Core.Modules.CollisionModule>();
 
             Core.Objects.Base.RenderableObject bow = new Core.Objects.Base.RenderableObject();
-            character.Add(bow);
+            Add(bow);
             bow.Texture = Textures["bow"];
-            bow.X = 90;
+            bow.X = 600;
             bow.Y = 60;
+            bow.AddModule<Core.Modules.CollisionModule>();
         }
 
         public void fireArrow(Vector2 direction) {
@@ -77,7 +78,6 @@ namespace SnowGame.SnowGame.Scenes  {
         /// </summary>
         /// <param name="gT"></param>
         public override void Update(GameTime gT) {
-
             defaultCamera.X = character.X;
             defaultCamera.Y = character.Y;
             base.Update(gT);

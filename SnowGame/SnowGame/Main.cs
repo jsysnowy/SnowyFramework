@@ -19,6 +19,7 @@ namespace SnowGame
         // SnowGame core:
         Core.Managers.SceneManager sceneManager;
         Core.Managers.GameManager gameManager;
+        Core.Managers.CollisionManager collisionManager;
         Core.Camera.Camera myCamera;
 
         // TEMP
@@ -38,7 +39,7 @@ namespace SnowGame
             // Set preferred height/width of the game:
             graphics.PreferredBackBufferWidth = Core.Config.GameConfiguration.DEFAULT_WIDTH;
             graphics.PreferredBackBufferHeight = Core.Config.GameConfiguration.DEFAULT_HEIGHT;
-            graphics.IsFullScreen = true;
+           // graphics.IsFullScreen = true;
             
             Content.RootDirectory = "Content";  
         }
@@ -60,11 +61,15 @@ namespace SnowGame
             gameManager = Core.Managers.GameManager.Instance;
             gameManager.Init(this.Content, this.GraphicsDevice);
 
+            // Make collision manager:
+            collisionManager = Core.Managers.CollisionManager.Instance;
+
             // Make scene manager:
             sceneManager = Core.Managers.SceneManager.Instance;
 
             // Make Camera:
             myCamera = new Core.Camera.Camera(GraphicsDevice.Viewport);
+            collisionManager.Init(myCamera, true);
 
             // Scenes, these will move to where they are needed in future:
             Menu = new SnowGame.Scenes.Menu();
@@ -118,17 +123,8 @@ namespace SnowGame
             // TODO: Add your update logic here:
             sceneManager.Update( gameTime );
 
-            // Remove this shit, it's jsut to test:
-            KeyboardState kb = Keyboard.GetState();
-            if ( kb.IsKeyDown(Keys.Space)) {
-                if ( toggle == 0) {
-                    toggle = 1;
-                    sceneManager.ActivateScene(MainGame);
-                } else {
-                    toggle = 0;
-                    sceneManager.ActivateScene(Menu);
-                }
-            }
+            // Update collisions:
+            collisionManager.Update(sceneManager.ActiveScene.defaultCamera);
 
             // BASE - update main game with dT.
             base.Update(gameTime);

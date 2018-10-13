@@ -37,7 +37,7 @@ namespace SnowGame.Core.Modules {
         /// <summary>
         ///  Create a new PlayerController module.
         /// </summary>
-        public PlayerController() {
+        public PlayerController() : base() {
             _interactionManager = new Managers.InteractionManager(PlayerIndex.One, true, true);
         }
             

@@ -9,10 +9,15 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SnowGame.Core.Modules.Base {
     public class Module {
         /// <summary>
+        /// Stores my object
+        /// </summary>
+        public Objects.Base.RenderableObject MyObj { get; set; }
+
+        /// <summary>
         /// Creates new instance of Module.
         /// </summary>
-        public Module( ) {
-
+        public Module() {
+   
         }
 
         /// <summary>

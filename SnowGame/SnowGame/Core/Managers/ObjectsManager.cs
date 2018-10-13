@@ -13,6 +13,15 @@ namespace SnowGame.Core.Managers {
         #endregion.
 
         /// <summary>
+        ///  Readonly getter of objects.
+        /// </summary>
+        public List<Objects.Base.RenderableObject> Objects {
+            get {
+                return _objects;
+            }
+        }
+
+        /// <summary>
         /// Create new instance of ObjectsManager.
         /// </summary>
         public ObjectsManager() {

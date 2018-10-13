@@ -26,17 +26,19 @@ namespace SnowGame.Core.Managers {
         private List<Scenes.Scene> _scenes;
 
         #endregion
-
         #region Singleton Initialisation
-        private static readonly SceneManager instance = new SceneManager();
-        static SceneManager() {}
         private SceneManager() { Init(); }
-        public static SceneManager Instance {
+        public static SceneManager Instance { get; } = new SceneManager();
+        #endregion
+
+        /// <summary>
+        /// Returns current active scene.
+        /// </summary>
+        public Scenes.Scene ActiveScene {
             get {
-                return instance;
+                return _currentActiveScene;
             }
         }
-        #endregion
 
         #region Public functions
         /// <summary>

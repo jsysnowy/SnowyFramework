@@ -24,9 +24,7 @@ namespace SnowGame.Core.Modules {
         /// </summary>
         private int _floor = Core.Config.GameConfiguration.DEFAULT_HEIGHT;
 
-        public GravityModule() {
 
-        }
 
         public override void Update(GameTime gT, RenderableObject obj) {
             obj.Y += acceleration;

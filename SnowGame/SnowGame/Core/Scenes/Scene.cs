@@ -45,6 +45,7 @@ namespace SnowGame.Core.Scenes {
         /// </summary>
         private Core.Managers.ObjectsManager _objectsManager;
 
+
         #endregion
 
         #region Get/Sets
@@ -73,8 +74,6 @@ namespace SnowGame.Core.Scenes {
                 this._loadedTextures = value;
             }
         }
-
-
         #endregion
 
         #region Constructor
@@ -118,7 +117,7 @@ namespace SnowGame.Core.Scenes {
         /// Add an object to this scene
         /// </summary>
         /// <param name="obj"></param>
-        public void Add( Core.Objects.Base.RenderableObject obj) {
+        public void Add( Objects.Base.RenderableObject obj) {
             _objectsManager.Add(obj);
         }
 
